@@ -23,6 +23,10 @@ namespace Menu
                         OpcionResta();
                         PressToContinue();
                         break;
+                    case "6":
+                        OpcionContarVocales();
+                        PressToContinue();
+                        break;
                     case "0":
                         Console.WriteLine("Saliendo...");
                         break;
@@ -44,6 +48,7 @@ namespace Menu
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("1 - Suma");
             Console.WriteLine("2 - Resta");
+            Console.WriteLine("6 - Vocales contadas");
             Console.WriteLine("0 - Salir");
         }
 
@@ -123,6 +128,31 @@ namespace Menu
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(mensaje);
             Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
+        static bool EsVocal(char letra)
+        {
+            string vocales = "aeiouáéíóú";
+            //vocales.ToLower();
+            return vocales.Contains(char.ToLower(letra));
+        }
+
+        static void OpcionContarVocales()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("****** CONTAR VOCALES ******");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
+
+            string palabra = PedirPalabras("Ingresá un string y te cuento las vocales: ");
+            int cantidad = 0;
+            for (int i = 0; i < palabra.Length; i++)
+            {
+                if (EsVocal(palabra[i])) cantidad ++;
+            }
+
+            Console.WriteLine($"La frase ingresada tiene {cantidad} vocales");
         }
     }
 }
